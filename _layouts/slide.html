@@ -1,0 +1,10 @@
+{% include picture.html src=page.image alt=page.title ratio_2x=page.ratio_2x ratio_4x=page.ratio_4x render_targets=page.render_targets %}
+<div class="caption {{page.caption-style}}">
+    <h2>{{ page.title }}</h2>
+    {{ content }}
+</div>
+{% if page.video %}
+<div class="video">
+    <a href="{{ page.video }}" target="_blank"><i class="fa fa-play-circle-o fa-5x"></i></a>
+</div>
+{% endif %}

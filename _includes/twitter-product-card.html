@@ -1,0 +1,14 @@
+{% assign model_page = site.pages | where:"tag",page.tag | first %}
+<meta name="twitter:card" content="product">
+{% if site.author.twitter %}
+<meta name="twitter:site" content="@{{site.author.twitter}}">
+<meta name="twitter:creator" content="@{{site.author.twitter}}">{% endif %}
+<meta name="twitter:title" content="{{page.title}}">
+{% if page.description %}
+<meta name="twitter:description" content="{{page.description}}">{% endif %}
+{% if page.social_image %}
+<meta name="twitter:image" content="{{ page.social_image | prepend: site.baseurl | prepend: site.url }}">{% endif %}
+<meta name="twitter:label1" content="Model">
+<meta name="twitter:data1" content="{{ page.title }}">
+<meta name="twitter:label2" content="MSRP">
+<meta name="twitter:data2" content="{{ model_page.msrp[site.country] }}">

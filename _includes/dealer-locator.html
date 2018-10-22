@@ -1,0 +1,42 @@
+<div>
+    <div class="panel panel-primary col-sm-10 col-md-8 col-lg-5">
+        <div class="panel-body">
+            <form class="mbDealerRequest">
+                <h2>Your MB journey starts here.</h2>
+                <p>
+                    Every journey has a starting point. Let us connect you with a
+                    certified MB Dealer. Simply provide a reference point (zip code or
+                    street address).
+                </p>
+                <label for="dlPostalCode" class="sr-only">Postal Code</label>
+                <div class="input-group">
+                    <input type="text" placeholder="Postal Code" class="form-control mbDealerPostalCode" />
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default mbDealerLocate"><i class="fa fa-lg fa-crosshairs"></i></button>
+                        <button type="submit" class="btn btn-primary">Find <i class="glyphicon glyphicon-menu-right"></i></button>
+                    </div>
+                </div>
+            </form>
+            <div class="mbDealerResults"></div>
+        </div>
+        <div class="panel-footer" class="mbDealerTryAgain">
+            <button type="button" class="btn btn-primary pull-right">Try Again</button>
+        </div>
+    </div>
+</div>
+<script type="text/template" id="dealerResultTemplate">
+  <div class="col-md-6 hidden-sm hidden-xs">
+  	<div class="mbDealerMap" style="width:95%; height: 325px"></div>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <img src="{imageUrl}" alt="{dealerName} logo." />
+    <p class="vcard">
+      <h3 class="organization-name">{dealerName}</h3>
+      <span class="adr">
+        <span class="street-address">{addressLine}</span><br />
+        <span class="locality">{locality}</span>, <span class="region">{region}</span> <span class="postal-code">{postalCode}</span><br />
+        <span class="tel">{phone}</span> | <span class="tel">{fax}</span> | <span class="email">{email}</span> | <a href="#">Directions</a>
+      </span>
+    </p>
+  </div>
+</script>

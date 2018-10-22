@@ -1,0 +1,22 @@
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{site.title}}",
+  "url": "{{ site.url }}",
+  "logo": "{{ '/images/mb-logo.svg' | prepend: site.baseurl | prepend: site.url }}",
+  "sameAs" : [
+      "{{ site.author.facebook }}",
+      "{{ site.author.youtube }}",
+      "https://twitter.com/{{ site.author.twitter }}"
+  ],
+  "contactPoint" : [{
+     "@type" : "ContactPoint",
+     "telephone" : "+1-{{ site.author.phone | replace: ".", "-" }}",
+     "contactType" : "customer service",
+     "contactOption" : "TollFree",
+     "areaServed" : "US"
+ }]
+}
+</script>

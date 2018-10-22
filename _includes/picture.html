@@ -1,0 +1,43 @@
+{% assign splitArray = include.src | split: "." %}
+{% assign filePathNoExt = "" %}
+{% assign fileExt = "" %}
+
+{% for item in splitArray %}
+    {% if forloop.last %}
+        {% assign fileExt = item %}
+    {% elsif forloop.first %}
+        {% assign filePathNoExt = filePathNoExt | append: item %}
+    {% else %}
+        {% assign filePathNoExt = filePathNoExt | append: "." | append: item %}
+    {% endif %}
+{% endfor %}
+
+{% if include.render_targets %}
+    <picture>
+    {% assign targetImgSrcSet = "" %}
+    {% for target in site.image_targets %}
+        {% assign targetImgSrcSet = filePathNoExt | append: "-" | append: target.name | append: "."| append: fileExt %}
+
+        {% if include.ratio_2x %}
+            {% assign targetImgSrcSet = targetImgSrcSet | append: ", " | append: filePathNoExt | append: "-" | append: target.name | append: "@2x."| append: fileExt | append: " 2x" %}
+        {% endif %}
+
+        {% if include.ratio_4x %}
+            {% assign targetImgSrcSet = targetImgSrcSet | append: ", " | append: filePathNoExt | append: "-" | append: target.name | append: "@4x."| append: fileExt | append: " 4x" %}
+        {% endif %}
+        <source srcset="{{ targetImgSrcSet }}" media="{{ target.media }}">
+{% endfor %}
+{% endif %}
+    {% assign imgSrcSet = include.src %}
+
+    {% if include.ratio_2x %}
+        {% assign imgSrcSet = imgSrcSet | append: ", " | append: filePathNoExt | append: "@2x."| append: fileExt | append: " 2x" %}
+    {% endif %}
+
+    {% if include.ratio_4x %}
+        {% assign imgSrcSet = imgSrcSet | append: ", " | append: filePathNoExt | append: "@4x."| append: fileExt | append: " 4x" %}
+    {% endif %}
+    <img srcset="{{ imgSrcSet }}" src="{{ include.src }}" alt="{{ include.alt }}">
+{% if include.render_targets %}
+</picture>
+{% endif %}

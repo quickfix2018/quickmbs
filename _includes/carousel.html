@@ -1,0 +1,43 @@
+{% assign slideFilter = {{include.filter}} %}
+{% assign slides = site.slides | where:"tag",slideFilter | sort:"sort-order" %}
+
+
+<div class="visible-xs mb-slides">
+    {% for slide in slides %}
+    <div class="item">{{ slide.output }}</div>
+    {% else %}
+        <div>there are no items.</div>
+    {% endfor %}
+</div>
+
+<div id="{{include.slide_id}}" class="carousel slide mb-slides hidden-xs" data-ride="carousel" data-pause="hover" >
+  <!-- Indicators -->
+  {% assign counter = 0 %}
+  <ol class="carousel-indicators">
+    {% for slide in slides %}
+    <li data-target="#{{include.slide_id}}" data-slide-to="{{ counter }}" {% if counter == 0 %}class="active"{% endif %}></li>
+    {% capture counter %}{{counter | plus: 1}}{% endcapture %}
+    {% endfor %}
+  </ol>
+
+  <!-- Wrapper for slides -->
+  {% assign counter = 0 %}
+  <div class="carousel-inner" role="listbox">
+    {% for slide in slides %}
+    <div class="item{% if counter == 0 %} active{% endif %}">{{ slide.output }}</div>
+    {% capture counter %}{{counter | plus: 1}}{% endcapture %}
+    {% else %}
+        <li>there are no items.</li>
+    {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#{{include.slide_id}}" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#{{include.slide_id}}" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

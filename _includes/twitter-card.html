@@ -1,0 +1,9 @@
+<meta name="twitter:card" content="summary_large_image">
+{% if site.author.twitter %}
+<meta name="twitter:site" content="@{{site.author.twitter}}">
+<meta name="twitter:creator" content="@{{site.author.twitter}}">{% endif %}
+<meta name="twitter:title" content="{{page.title}}">
+{% if page.description %}
+<meta name="twitter:description" content="{{page.description}}">{% endif %}
+{% if page.social_image %}
+<meta name="twitter:image" content="{{ page.social_image | prepend: site.baseurl | prepend: site.url }}">{% endif %}

@@ -1,0 +1,26 @@
+{% assign model_page = site.pages | where:"tag",page.tag | first %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{page.title}}",
+  "image": "{{ page.social_image | prepend: site.baseurl | prepend: site.url }}",
+  "description": "{{ page.description }}",
+  "brand": {
+    "@type": "Thing",
+    "name": "{{site.title}}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "{{ model_page.msrp[site.country] }}",
+    "priceValidUntil": "2016-09-01",
+    "itemCondition": "http://schema.org/NewCondition",
+    "availability": "http://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "{{site.title}}"
+    }
+  }
+}
+</script>

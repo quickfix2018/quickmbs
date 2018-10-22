@@ -1,0 +1,18 @@
+<div class="row">
+{% assign series = site.pages | where:"series",{{include.series}} %}
+{% assign firstCol = true %}
+{% for model in series %}
+	{% if include.series == "B52" and firstCol %}
+		{% assign firstCol = false %}
+		<div class="col-sm-offset-2 col-sm-4 mb-model text-center">
+	{% else %}
+		<div class="col-sm-4 mb-model text-center">
+	{% endif %}
+			<a href="/models/{{model.title | slugify}}">
+				<h3>{{model.title}}</h3>
+				{% include picture.html src=model.selector_image alt=page.title ratio_2x=true ratio_4x=true render_targets=false %}
+			</a>
+			<a href="{{ site.designer_base_url }}/model/{{model.builder_id}}"> Build Your Own</a>
+	</div>
+{% endfor %}
+</div>

@@ -1,0 +1,19 @@
+{% if page.inverted %}
+<li class="timeline-inverted">
+{% else %}
+<li>
+{% endif %}
+    <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title">{{page.title}}</h4>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{page.time}}</small></p>
+        </div>
+        <div class="timeline-body">
+            {% if page.image_url %}
+            <img src="{{page.image_url}}" alt="{{page.image_alt}}" />
+            {% endif %}
+            {{ page.content }}
+        </div>
+    </div>
+</li>

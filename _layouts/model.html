@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, width=device-width" >
+		{% include meta.html %}
+		{% include twitter-product-card.html %}
+		<title>{{ site.title}} - {{ page.title }}</title>
+		{% include additional-head.html %}
+		{% include model-head.html %}
+		{% include styles.html %}
+	</head>
+	<body>
+		{% include navigation.html %}
+
+		<section id="gallery-section" class="top-offset">
+			{% assign modelID = page.tag %}
+			{% include carousel.html filter=modelID slide_id="model-gallery" %}
+		</section>
+
+		<section class="container padded">
+			<h2>Specifications</h2>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Specification</th>
+						<th>Availability</th>
+					</tr>
+				</thead>
+				 <tbody> 
+				 {% assign featuresOnly = site.data.features | where:"Category","Specification" %}
+				{% for feature in featuresOnly %}
+					{% assign opt = feature.[{{page.title}}] %}
+					<tr>
+						<td>{{feature.Title}}</td>
+						<td>
+							{% case opt %}
+								{% when "O" %}
+									<i class="fa fa-circle-o"></i>
+								{% when "S" %}
+									<i class="fa fa-circle"></i>
+								{% else %}
+									{{ opt }}
+							{% endcase %}
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</section>
+
+		<section class="container padded">
+			<h2>Features</h2>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Availability</th>
+					</tr>
+				</thead>
+				<tbody>
+			{% assign featuresOnly = site.data.features | where:"Category","Feature" %}
+			{% for feature in featuresOnly %}
+				{% assign opt = feature.[{{page.title}}] %}
+				<tr>
+					<td>{{feature.Title}}</td>
+					<td>
+						{% case opt %}
+							{% when "O" %}
+								<i class="fa fa-circle-o"></i>
+							{% when "S" %}
+								<i class="fa fa-circle"></i>
+							{% else %}
+								{{ opt }}
+						{% endcase %}
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+			</table>
+		</section>
+
+		{% include footer.html %}
+		{% include scripts.html %}
+	</body>
+</html>

@@ -1,0 +1,44 @@
+
+{% assign monthNumber = page.start_date  | date: "%m" %}
+
+{% case monthNumber %}
+{% when "01" %}{% assign dateDisplay = "Jan" %}
+{% when "02" %}{% assign dateDisplay = "Feb" %}
+{% when "03" %}{% assign dateDisplay = "Mar" %}
+{% when "04" %}{% assign dateDisplay = "Apr" %}
+{% when "05" %}{% assign dateDisplay = "May" %}
+{% when "06" %}{% assign dateDisplay = "Jun" %}
+{% when "07" %}{% assign dateDisplay = "Jul" %}
+{% when "08" %}{% assign dateDisplay = "Aug" %}
+{% when "09" %}{% assign dateDisplay = "Sep" %}
+{% when "10" %}{% assign dateDisplay = "Oct" %}
+{% when "11" %}{% assign dateDisplay = "Nov" %}
+{% when "12" %}{% assign dateDisplay = "Dec" %}
+{% endcase %}
+
+<div itemscope itemtype="http://schema.org/Event" class="media">
+  <div class="media-left">
+      <div class="panel panel-primary">
+          <div class="panel-heading text-center text-uppercase"><strong>{{ dateDisplay }}</strong></div>
+          <div class="panel-body text-center" style="font-size: 2.5em; min-width: 75px; line-height: 1em">
+              <strong>{{ page.start_date | date: "%e" }}</strong>
+          </div>
+      </div>
+  </div>
+  <div class="media-body">
+    {% if page.image %}
+    <img src="{{page.image}}" alt="{{page.title}} event image." />
+    {% endif %}
+
+    <a itemprop="url" target="_blank" href="{{page.event_url}}"><h3 itemprop="name" class="media-heading">{{page.title}}</h3></a>
+    <div itemprop="location" itemscope itemtype="http://schema.org/Place">
+        <h4 itemprop="name">{{ page.location }}</h4>
+        <p itemprop="address">
+            {{ page.location_address }}
+        </p>
+    </div>
+    <p><span itemprop="startDate">{{page.start_date}}</span> - <span itemprop="endDate">{{page.end_date}}</span></p>
+    {{ content }}
+  </div>
+</div>
+<hr />
